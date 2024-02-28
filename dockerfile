@@ -1,4 +1,4 @@
-FROM alpine:latest
+FROM debian:latest
 MAINTAINER mjuwx@outlook.com
 
 # Add crontab file in the cron directory
