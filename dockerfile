@@ -5,7 +5,7 @@ MAINTAINER mjuwx@outlook.com
 RUN which crond && \
     rm -rf /etc/periodic
 
-chmod +x docker-entrypoint.sh
+RUN chmod +x docker-entrypoint.sh
 COPY entrypoint.sh /entrypoint.sh
 
 ENTRYPOINT ["/entrypoint.sh"]
