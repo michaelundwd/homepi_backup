@@ -5,10 +5,10 @@ MAINTAINER mjuwx@outlook.com
 RUN which crond && \
     rm -rf /etc/periodic
 
-COPY entrypoint.sh ./entrypoint.sh
+COPY entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
 
-ENTRYPOINT ["./entrypoint.sh"]
+ENTRYPOINT ["/entrypoint.sh"]
 
 # source: `docker run --rm -it alpine  crond -h`
 # -f | Foreground
