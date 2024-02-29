@@ -5,8 +5,8 @@ MAINTAINER mjuwx@outlook.com
 RUN which crond && \
     rm -rf /etc/periodic
 
-RUN chmod +x entrypoint.sh
 COPY entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
 
 ENTRYPOINT ["/entrypoint.sh"]
 
