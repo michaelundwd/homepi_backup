@@ -4,10 +4,14 @@ MAINTAINER mjuwx@outlook.com
 RUN which crond && \
     rm -rf /etc/periodic
 
-#COPY entrypoint.sh /entrypoint.sh
-#RUN chmod +x /entrypoint.sh
+# Add crontab file in the cron directory
+COPY crontab /var/spool/cron/crontabs/root
 
-#ENTRYPOINT ["/entrypoint.sh"]
+# Set up entrypoint and make it executable
+COPY entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
+
+ENTRYPOINT ["/entrypoint.sh"]
 
 # source: `docker run --rm -it alpine  crond -h`
 # -f | Foreground
