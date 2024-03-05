@@ -1,43 +1,12 @@
-FROM alpine
-MAINTAINER mjuwx@outlook.com
+#version _4
 
-RUN which crond && \
-    rm -rf /etc/periodic
+FROM alpine:latest
 
-# Add crontab file in the cron directory
-COPY crontab /var/spool/cron/crontabs/root
+RUN mkdir /homepi_opt && mkdir /homeserver_backup_homepi
+VOLUME ("/homepi_opt")
+VOLUME ("homeserver_backup_homepi")
 
-# Set up entrypoint and make it executable
-COPY entrypoint.sh /entrypoint.sh
-RUN chmod +x /entrypoint.sh
+ENV TZ: "Europe/London"
 
-ENTRYPOINT ["/entrypoint.sh"]
-
-# source: `docker run --rm -it alpine  crond -h`
-# -f | Foreground
-# -l N | Set log level. Most verbose 0, default 8
-CMD ["crond", "-f", "-l", "2"]
-
-
-
-
-# original below that sort of worked
-
-##FROM debian:latest
-
-# Add crontab file in the cron directory
-##ADD crontab /etc/cron.d/hello-cron
-
-# Give execution rights on the cron job
-##RUN chmod 0644 /etc/cron.d/hello-cron
-
-# Create the log file to be able to run tail
-##RUN touch /var/log/cron.log
-
-#Install Cron
-##RUN apt-get update
-##RUN apt-get -y install cron
-
-
-# Run the command on container startup
-##CMD cron && tail -f /var/log/cron.log
+RUN echo "* * * * * /homepi_opt/backup/test.sh;exit 0" | crontab - 
+CMD ["crond","-f"] 
