@@ -5,7 +5,7 @@
 #   All file & folder references are as from this docker container   #
 #   Requires bind mounts for home_pi & homeserver_backup_homepi      #
 #   To /opt and /mnt/homeserver_backup_homepi respectively           #
-#   dev forked from Version 4 dated 20240306                         #
+#   updated from dev4 dated 20240311                                 #
 ######################################################################
 
 FROM alpine:latest
