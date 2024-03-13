@@ -15,6 +15,7 @@ RUN mkdir /homepi_opt && mkdir /homeserver_backup_homepi
 COPY entrypoint.sh .
 RUN chmod +x ./entrypoint.sh
 
+RUN apk add --no-cache tzdata
 ENV TZ: "Europe/London"
 
 ENTRYPOINT ["./entrypoint.sh"]
