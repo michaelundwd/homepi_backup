@@ -19,23 +19,6 @@ RUN apk add --no-cache tzdata
 ENV TZ: "Europe/London"
 RUN cp /usr/share/zoneinfo/Europe/London /etc/localtime
 
-
-# test code to create bind mounts in dockerfile
-
-RUN --mount=type=bind,source=/opt,target=/homepi_opt \
-    --mount=type=bind,source=/mnt/homeserver_backup_homepi,target=/homeserver_backup_homepi
-
-
-
-
-
-
-
-
-
-
-
-
 ENTRYPOINT ["./entrypoint.sh"]
 
 # CMD ["crond","-f"] 
