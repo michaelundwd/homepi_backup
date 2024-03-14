@@ -17,6 +17,7 @@ RUN chmod +x ./entrypoint.sh
 
 RUN apk add --no-cache tzdata
 ENV TZ: "Europe/London"
+RUN cp /usr/share/zoneinfo/Europe/London /etc/localtime
 
 ENTRYPOINT ["./entrypoint.sh"]
 
